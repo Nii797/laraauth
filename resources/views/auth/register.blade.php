@@ -54,6 +54,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="number_phone" class="col-md-4 col-form-label text-md-right">Number Phone</label>
+
+                            <div class="col-md-6">
+                                <input id="number_phone" type="text" class="form-control @error('number_phone') is-invalid @enderror" name="number_phone" value="{{ old('number_phone') }}" required autocomplete="number_phone">
+
+                                @error('number_phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
