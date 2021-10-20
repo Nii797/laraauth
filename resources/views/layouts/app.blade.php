@@ -21,6 +21,17 @@
 </head>
 <body>
     <div id="app">
+
+        @if (Auth::check() && !Auth::user()->email_verified_at)
+            <div class="alert alert-danger mb-n1 text-center" role="alert">
+                Anda Belum Verifikasi Email,
+                <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Verifikasi ulang') }}</button>.
+                </form>
+            </div>
+        @endif
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -73,6 +84,18 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-md-6">
+                        @if (session('resent'))
+                            <div class="alert alert-success" role="alert">
+                                {{ __('Tautan Verifikasi baru telah dikirim ke alamat email anda.') }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
             @yield('content')
         </main>
     </div>
