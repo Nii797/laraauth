@@ -74,4 +74,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    protected function registered()
+    {
+        $this->guard()->logout();
+        return redirect()->route('login')->with('success',"You're registered, and please verify your email address.");
+    }
 }
