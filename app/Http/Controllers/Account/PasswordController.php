@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class PasswordController extends Controller
 {
+    // auth middleware
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function edit()
     {
         return view('password.edit');
